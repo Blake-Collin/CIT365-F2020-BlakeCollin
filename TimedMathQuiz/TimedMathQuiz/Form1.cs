@@ -71,8 +71,19 @@ namespace TimedMathQuiz
             timeLeft = 30;
             timeLabel.Text = "30 seconds";
             timer1.Start();
+            ResetBackColors();
         }
 
+        //Simple function to reset our background colors on the answers to white
+        private void ResetBackColors()
+        {
+            sum.BackColor = Color.White;
+            difference.BackColor = Color.White;
+            product.BackColor = Color.White;
+            quotient.BackColor = Color.White;
+        }
+
+        //Check all answers are correct
         private bool CheckTheAnswer()
         {
             if ((addend1 + addend2 == sum.Value)
@@ -138,29 +149,41 @@ namespace TimedMathQuiz
         }
 
 
-        //Added sounds for when you get the right answer for each to be a hint
+        //Added sounds for when you get the right answer for each to be a hint as well as change the color to green for correct answer
         private void sum_ValueChanged(object sender, EventArgs e)
         {
             if (addend1 + addend2 == sum.Value)
+            { 
                 SystemSounds.Exclamation.Play();
+                sum.BackColor = Color.Green;
+            }
         }
 
         private void difference_ValueChanged(object sender, EventArgs e)
         {
             if (minuend - subtrahend == difference.Value)
+            {
                 SystemSounds.Exclamation.Play();
+                difference.BackColor = Color.Green;
+            }
         }
 
         private void product_ValueChanged(object sender, EventArgs e)
         {
             if (multiplicand * multiplier == product.Value)
+            {
                 SystemSounds.Exclamation.Play();
+                product.BackColor = Color.Green;
+            }
         }
 
         private void quotient_ValueChanged(object sender, EventArgs e)
         {
             if (dividend != 0 && divisor != 0 && dividend / divisor == quotient.Value)
+            {
                 SystemSounds.Exclamation.Play();
+                quotient.BackColor = Color.Green;
+            }
         }
     }
 }
