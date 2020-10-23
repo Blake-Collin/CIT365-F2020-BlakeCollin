@@ -21,7 +21,7 @@ namespace MegaDesk1._0
 
     public class Desk
     {
-        //CONSTANT VARIABLes
+        //CONSTANT VARIABLES
         private static int MAXIMUMDEPTH = 48;
         private static int MINIMUUMDEPTH = 12;
         private static int MAXIMUMWIDTH = 96;

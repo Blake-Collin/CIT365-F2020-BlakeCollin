@@ -24,19 +24,6 @@ namespace MegaDesk1._0
             //Set our limits/values
             materialComboBox.DataSource = Enum.GetValues(typeof(DeskMaterial));
 
-            /** Overdone part removing
-            //Get variables from our desk limiters
-            depthNum.Maximum = DESKVARS.GetMaxDepth();
-            depthNum.Minimum = DESKVARS.GetMinDepth();
-            depthNum.Value = DESKVARS.GetMinDepth();
-            widthNum.Maximum = DESKVARS.GetMaxWidth();
-            widthNum.Minimum = DESKVARS.GetMinWdith();
-            widthNum.Value = DESKVARS.GetMinWdith();
-            drawersNum.Maximum = DESKVARS.GetMaxDrawers();
-            drawersNum.Minimum = DESKVARS.GetMinDrawers();
-            drawersNum.Value = DESKVARS.GetMinDrawers();
-            */
-
             daysComboBox.DataSource = DAYS;
 
             //Set Labels

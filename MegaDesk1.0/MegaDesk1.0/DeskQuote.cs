@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace MegaDesk1._0
         private int productionDays;
         private DateTime completionDate;
 
+        //static variables
+        private static int[,] rushPrices = new int[3,3];
 
         //Constructors
         public DeskQuote(string inName, int inWidth, int inDepth, int inDrawerCount, DeskMaterial inMaterial, int inProductionDays)
@@ -52,7 +55,7 @@ namespace MegaDesk1._0
             //Calculate area cost
             int area = desk.GetDeskDepth() * desk.GetDeskWidth();
             if (area > 1000)            
-                price += area;            
+                price += (area - 1000);
 
             //Add our drawer cost
             price += (desk.GetNumOfDrawers() * 50);
@@ -185,6 +188,40 @@ namespace MegaDesk1._0
             return completionDate;
         }
 
+        public static void GetRushOrder(List<int> prices)
+        {            
+            string path = @"rushOrderPrices.txt";
+            List<int> integers = new List<int>();
+            string[] lines = File.ReadAllLines(path, Encoding.UTF8);
+            try
+            {
+                foreach (string line in lines)
+                {
+                    integers.Add(int.Parse(line));
+                }
+            }
+            catch (Exception e)
+            {
+                throw (e);
+            }
+            finally
+            {
+                if (prices.Count == 9)
+                {
+                    for (int x = 0; x < 3; x++)
+                    {
+                        for (int y = 0; y < 3; y++)
+                        {
+                            rushPrices[x, y] = prices[0];
+                            prices.RemoveAt(0);
+                        }
+                    }
+                }
+                else
+                    throw (new Exception("List too small/big, its broken or something got sent wrong please try again!"));
+            }        
+        }
 
     }
 }
+
